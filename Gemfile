@@ -21,6 +21,7 @@ gem "rails", "~> 4.2.0"
 gem "recipient_interceptor"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
+gem 'time_for_a_boolean'
 gem "title"
 gem "uglifier"
 gem "versionist"
