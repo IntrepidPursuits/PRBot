@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20160226193549) do
     t.datetime "updated_at",    null: false
     t.string   "slack_team_id", null: false
     t.string   "domain",        null: false
+    t.string   "token",         null: false
   end
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|

@@ -5,6 +5,7 @@ class CreateTeams < ActiveRecord::Migration
 
       t.string :slack_team_id, null: false
       t.string :domain, null: false
+      t.string :token, null: false
     end
   end
 end

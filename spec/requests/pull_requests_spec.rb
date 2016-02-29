@@ -3,17 +3,13 @@ require 'rails_helper'
 describe 'Pull Requests Requests' do
   describe 'POST /pull_requests' do
     context 'with a valid parameters' do
-      # request
-      # token=RyPgoRCq4HvWQX1b37l6ivRQ
-      # team_id=T0001
-      # team_domain=example
-      # channel_id=C2147483705
-      # channel_name=test
-      # user_id=U2147483697
-      # user_name=Steve
-      # command=/weather
-      # text=94070
-      # response_url=https://hooks.slack.com/commands/1234/5678
+      it 'responds with ok' do
+        post(pull_requests_url,
+             create_pull_request_params.to_json,
+             accept_headers)
+
+        expect(response).to have_http_status :ok
+      end
     end
     context 'with invalid parameters' do
       context 'such as without a pull request link' do
@@ -21,9 +17,29 @@ describe 'Pull Requests Requests' do
         end
       end
 
+      context 'such as a pull request link that already exists' do
+        xit 'responds with bad request' do 
+        end
+      end
+
       context 'such as with an invalid team' do
         xit 'responds with not found' do 
         end
+      end
+    end
+  end
+  describe 'GET /pull_requests' do
+    context 'with valid parameters' do
+      it 'returns a list of pull requests for that team and channel' do
+        team = create(:team)
+        channel = create(:channel, team: team)
+
+        get(pull_requests_url,
+            create_pull_request_params,
+            accept_headers)
+
+        expect(response).to have_http_status :ok
+        # expect(body)
       end
     end
   end

@@ -5,7 +5,6 @@ class PullRequest < ActiveRecord::Base
 
   time_for_a_boolean :approved
 
-  validates :approved, presence: true
   validates :message, presence: true
   validates :link, presence: true
 

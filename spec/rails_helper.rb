@@ -14,6 +14,7 @@ end
 
 RSpec.configure do |config|
   config.include Helpers::Requests, type: :request
+  config.include Helpers::Params
   config.include JsonSpec::Helpers
   config.include Features, type: :feature
   config.infer_base_class_for_anonymous_controllers = false

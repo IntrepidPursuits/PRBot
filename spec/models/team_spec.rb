@@ -9,5 +9,6 @@ describe Team do
   describe 'validations' do
     it { should validate_presence_of(:slack_team_id) }
     it { should validate_presence_of(:domain) }
+    it { should validate_presence_of(:token) }
   end
 end

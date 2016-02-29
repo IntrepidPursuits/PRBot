@@ -29,7 +29,7 @@ module Helpers
     end
 
     def accept_header(api_version = 1)
-      "application/vnd.followapp.me; version=#{api_version}"
+      "application/vnd.pr.bot; version=#{api_version}"
     end
 
     def accept_headers
