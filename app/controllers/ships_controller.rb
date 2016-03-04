@@ -2,7 +2,7 @@ class ShipsController < ApplicationController
   def create
     pull_request = ShipParser.parse(params)
     if pull_request.nil?
-      render text: "that pull request is already approved!"
+      render text: "that pull request doesn't exist or is already approved!"
     else
       pull_request.approved = true
       pull_request.save

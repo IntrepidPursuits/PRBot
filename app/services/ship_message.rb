@@ -5,7 +5,7 @@ class ShipMessage
   end
 
   def message
-    "Hey @#{pull_request.user.name}, you're all set to :shipit: #{pull_request.link}"
+    "Hey @#{pull_request.user.name}, :shipit: #{pull_request.link}. #{COMPLIMENTS[rand(0..COMPLIMENTS.size - 1)].to_s}"
   end
 
   def self.message(pull_request)
