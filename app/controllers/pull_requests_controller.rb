@@ -17,7 +17,7 @@ class PullRequestsController < ApplicationController
     if pull_request.nil?
       head :bad_request 
     else
-      render text: "thanks #{pull_request.user.name}! #{COMPLIMENTS[rand(0..COMPLIMENTS.size - 1)].to_s}"
+      render text: "New Pull Request by #{pull_request.user.name}: #{pull_request.link}"
     end
   end
 end
