@@ -5,10 +5,10 @@ class PullRequestsController < ApplicationController
     if  team.nil? || channel.nil?
       head :bad_request
     else
-      pull_requests = PullRequest.where(approved_at: nil,
+      pull_requests = PullRequest.includes(:user).where(approved_at: nil,
                                       team: team,
                                       channel: channel).all
-      render json: pull_requests
+      render text: PullRequestMessage.message(pull_requests)
     end
   end
 
