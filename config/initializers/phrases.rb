@@ -25,3 +25,12 @@ COMPLIMENTS = [
   'You consistently bring your all and I truly appreciate that.',
   'I am so proud to have you part of my team.'
 ]
+
+ENCOURAGEMENT = []
+
+SHIP_SYMBOLS = [
+  ":ship:",
+  ":shipit:",
+  ":merge:",
+  ":chipmunk:"
+]

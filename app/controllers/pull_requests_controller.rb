@@ -17,7 +17,7 @@ class PullRequestsController < ApplicationController
     if pull_request.nil?
       head :bad_request 
     else
-      render text: COMPLIMENTS[rand(0..COMPLIMENTS.size - 1)].to_s
+      render text: "thanks #{pull_request.user.name}! #{COMPLIMENTS[rand(0..COMPLIMENTS.size - 1)].to_s}"
     end
   end
 end
