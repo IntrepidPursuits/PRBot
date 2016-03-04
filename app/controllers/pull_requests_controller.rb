@@ -17,7 +17,7 @@ class PullRequestsController < ApplicationController
     if pull_request.nil?
       head :bad_request 
     else
-      render text: "New Pull Request by #{pull_request.user.name}: #{pull_request.link}"
+      render text: "New Pull Request by #{pull_request.user.name}: #{pull_request.message} #{pull_request.link}"
     end
   end
 end
