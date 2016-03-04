@@ -14,8 +14,11 @@ class PullRequestParser
     pull_request.user = UserParser.parse(@params, pull_request.team)
     return nil if pull_request.user.nil?
     pull_request.message = message
-    pull_request.save
-    pull_request
+    if pull_request.save
+      pull_request
+    else
+      nil
+    end
   end
 
   def self.parse(params)

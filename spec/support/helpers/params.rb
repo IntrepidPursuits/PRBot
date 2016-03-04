@@ -8,7 +8,7 @@ module Helpers
         channel_name: 'test',
         user_id: 'U2147483697',
         user_name: 'Steve',
-        command: '/weather',
+        command: '/pr',
         text: 'message pr to solve a rubix cude https://github.com/IntrepidPursuits/follow-app-server/pull/125',
         response_url: 'https://hooks.slack.com/commands/1234/5678' }
     end
@@ -21,7 +21,7 @@ module Helpers
         channel_name: 'test',
         user_id: 'U2147483697',
         user_name: 'Steve',
-        command: '/weather',
+        command: '/ship',
         text: 'hey @Steve you can /125',
         response_url: 'https://hooks.slack.com/commands/1234/5678' }
     end
@@ -34,7 +34,7 @@ module Helpers
         channel_name: 'test',
         user_id: 'U2147483697',
         user_name: 'Steve',
-        command: '/weather',
+        command: '/ship',
         text: 'hey @Stev you can /125',
         response_url: 'https://hooks.slack.com/commands/1234/5678' }
     end
@@ -47,7 +47,7 @@ module Helpers
         channel_name: 'test',
         user_id: 'U2147483697',
         user_name: 'Steve',
-        command: '/weather',
+        command: '/ship',
         text: 'hey @Steve you can /12',
         response_url: 'https://hooks.slack.com/commands/1234/5678' }
     end
@@ -60,7 +60,7 @@ module Helpers
         channel_name: 'test',
         user_id: 'U2147483697',
         user_name: 'Steve',
-        command: '/weather',
+        command: '/ship',
         text: 'hey @Steve you can /125',
         response_url: 'https://hooks.slack.com/commands/1234/5678' }
     end

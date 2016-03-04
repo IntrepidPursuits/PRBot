@@ -21,6 +21,7 @@ describe 'Channel Parser' do
         expect(parsed_user).to eq(user)
       end
     end
+
     context 'with invalid parameters' do
       it 'returns nil if the object cannnot be parsed' do
         team = create(:team)
