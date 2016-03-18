@@ -26,7 +26,74 @@ COMPLIMENTS = [
   'I am so proud to have you part of my team.'
 ]
 
-ENCOURAGEMENT = []
+ENCOURAGEMENT = [
+  'Wow!',
+'Great job!',
+'Now you\'ve got it!
+Awesome!',
+'Outrageous!',
+' You have a lot of talent
+Superior!',
+' Fantastic!',
+'Very much improved.
+Right on!',
+' Outstanding!',
+'You\'re the best!
+Nice job.',
+' I\'ll take that.',
+' That\'s a commendable job.
+Wonderful.',
+'Fabulous!',
+' You can do it!
+Good going!',
+' You\'re great!',
+' That\'s thoughtful of you.
+Groovy!',
+' Hang ten!',
+' You\'re good at this.
+Good job.',
+' Good work.',
+'Keep up the good work.
+Clever!',
+' Correct!',
+'I liked the way Mat cleaned his desk.
+Incredible!',
+' Impressive!',
+' I like the way Mark raised his hand.
+Nice work.',
+'I\'m proud of you.',
+' Now that\'s creative!
+Bravo!',
+'Applause.',
+' It\'s been a pleasure to be with you.
+Hug.',
+'Hot dog!',
+'Hamburger, two fries and a shake!
+Shaka sign.',
+' Give me five!',
+' You are very precious!
+:)',
+'Smile!',
+'Kawabanga dudes!
+Laugh!',
+'That\'s hip!',
+' That was BAD! :)
+That\'s nice.',
+'I\'m touched.',
+'That\'s so funny! Ha Ha Ha!
+Terrific!',
+' Thank you.',
+'I can see you enjoy learning.
+Great!',
+'Good cooperation.',
+' You were very courageous.',
+'Whoopie!',
+' I like your enthusiasm.',
+'Aha!',
+'Great!',
+'You really outdid yourself.',
+'You are very intelligent.',
+'Cool!' ]
 
 SHIP_SYMBOLS = [
   ":ship:",

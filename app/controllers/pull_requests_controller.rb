@@ -17,6 +17,8 @@ class PullRequestsController < ApplicationController
     if pull_request.nil?
       head :bad_request 
     else
+      response = Slack.post(pull_request)
+   
       render text: "New Pull Request by #{pull_request.user.name}: #{pull_request.message} #{pull_request.link}"
     end
   end
