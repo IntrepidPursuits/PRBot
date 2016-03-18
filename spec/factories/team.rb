@@ -6,13 +6,13 @@ FactoryGirl.define do
 
     trait :with_user do
       after :create do |object, evaluator|
-        create(:user, subject: object)
+        create(:user, team: object)
       end
     end
 
     trait :with_channel do
       after :create do |object, evaluator|
-        create(:channel, subject: object)
+        create(:channel, team: object)
       end
     end
   end

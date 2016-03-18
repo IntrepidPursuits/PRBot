@@ -8,7 +8,8 @@ class SlackMessenger
   def post
     uri = URI.parse(channel_url)
     params = { 'payload': payload }
-    Net::HTTP.post_form(uri, params)
+    response = Net::HTTP.post_form(uri, params)
+    response.code
   end
 
   def self.post(pull_request)
@@ -22,7 +23,7 @@ class SlackMessenger
   end
 
   def channel_url
-    pull_request.channel.web_hook || ENV['SLACK_POST_URL']
+    pull_request.channel.web_hook
   end
 
   def creator_name
