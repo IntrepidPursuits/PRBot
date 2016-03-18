@@ -17,9 +17,12 @@ class PullRequestsController < ApplicationController
     if pull_request.nil?
       head :bad_request 
     else
-      response = Slack.post(pull_request)
-   
-      render text: "New Pull Request by #{pull_request.user.name}: #{pull_request.message} #{pull_request.link}"
+      response = PullRequestMessenger.post(pull_request)
+      if response.code == '200'
+        render text: "Pull request received! #{COMPLIMENTS[rand(0..COMPLIMENTS.size - 1)].to_s}"
+      else
+        head :bad_request 
+      end
     end
   end
 end

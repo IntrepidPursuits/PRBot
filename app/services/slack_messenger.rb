@@ -1,8 +1,5 @@
-require "net/http"
-require "uri"
-
-class Slack
-  attr_reader :pull_request
+class SlackMessenger
+   attr_reader :pull_request
 
   def initialize(pull_request)
     @pull_request = pull_request
@@ -10,7 +7,7 @@ class Slack
 
   def post
     uri = URI.parse(ENV['SLACK_POST_URL'])
-    params = {'channel': "@slackbot", 'username': 'prbot', 'text': "New Pull Request by #{creator_name}: #{message} #{link}"}
+    params = { 'payload': payload }
     Net::HTTP.post_form(uri, params)
   end
 
@@ -21,18 +18,23 @@ class Slack
   private
 
   def channel_name
-    @pull_request.channel.name
+    '@bryantwolf'
+    # "##{@pull_request.channel.name}"
   end
 
   def creator_name
-    @pull_request.user.name
-  end
-
-  def message
-    @pull_request.message
+    "@#{@pull_request.user.name}"
   end
 
   def link
     pull_request.link
+  end
+
+  def payload
+    { 'channel': channel_name, 'username': 'prbot', 'text': text }.to_json
+  end
+
+  def text
+    raise 'Subclass must define text'
   end
 end

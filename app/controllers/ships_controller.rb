@@ -6,8 +6,13 @@ class ShipsController < ApplicationController
     else
       pull_request.approved = true
       pull_request.save
-      message = ShipMessage.message(pull_request)
-      render text: message
+
+      response = ShipMessenger.post(pull_request)
+      if response.code == '200'
+        render text: "Ship Recorded."
+      else
+        head :bad_request 
+      end
     end
   end
 end
