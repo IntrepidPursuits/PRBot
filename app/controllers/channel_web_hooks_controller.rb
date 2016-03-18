@@ -7,6 +7,7 @@ class ChannelWebHooksController < ApplicationController
       head :bad_request 
     else
       channel.web_hook = WebHookParser.parse(params)
+      channel.save
       if channel.web_hook.nil?
         head :bad_request        
       else
