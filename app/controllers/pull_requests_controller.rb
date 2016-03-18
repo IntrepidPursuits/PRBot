@@ -19,7 +19,7 @@ class PullRequestsController < ApplicationController
     else
       response = PullRequestMessenger.post(pull_request)
       if response.code == '200'
-        render text: "Pull request received! #{COMPLIMENTS[rand(0..COMPLIMENTS.size - 1)].to_s}"
+        render text: "Pull request received! #{COMPLIMENTS[rand(0..COMPLIMENT.size - 1)].to_s}"
       else
         head :bad_request 
       end

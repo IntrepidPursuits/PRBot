@@ -2,7 +2,7 @@ class ShipMessenger < SlackMessenger
   private
 
   def text
-    "#{creator_name} you can #{ship} #{pull_request.link}. #{compliment}"
+    "<@#{pull_request.user.name}> you can #{ship} #{pull_request.link}. #{compliment}"
   end
 
   def ship

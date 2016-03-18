@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226193549) do
+ActiveRecord::Schema.define(version: 20160318190635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160226193549) do
     t.string   "slack_channel_id", null: false
     t.string   "name",             null: false
     t.uuid     "team_id",          null: false
+    t.string   "web_hook"
   end
 
   add_index "channels", ["team_id"], name: "index_channels_on_team_id", using: :btree

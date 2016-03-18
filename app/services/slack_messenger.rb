@@ -6,7 +6,7 @@ class SlackMessenger
   end
 
   def post
-    uri = URI.parse(ENV['SLACK_POST_URL'])
+    uri = URI.parse(channel_url)
     params = { 'payload': payload }
     Net::HTTP.post_form(uri, params)
   end
@@ -18,7 +18,12 @@ class SlackMessenger
   private
 
   def channel_name
-    "##{@pull_request.channel.name}"
+    '#testbot'
+    # "##{@pull_request.channel.name}"
+  end
+
+  def channel_url
+    pull_request.channel.web_hook || ENV['SLACK_POST_URL']
   end
 
   def creator_name
@@ -30,7 +35,7 @@ class SlackMessenger
   end
 
   def payload
-    { 'channel': channel_name, 'username': 'prbot', 'text': text }.to_json
+    { 'channel': channel_name, 'username': 'prbot', 'text': text, "link_names": 1 }.to_json
   end
 
   def text
