@@ -18,8 +18,7 @@ class SlackMessenger
   private
 
   def channel_name
-    '@bryantwolf'
-    # "##{@pull_request.channel.name}"
+    "##{@pull_request.channel.name}"
   end
 
   def creator_name
