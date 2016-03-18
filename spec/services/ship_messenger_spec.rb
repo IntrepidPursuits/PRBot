@@ -18,6 +18,8 @@ describe 'Ship Messenger' do
 
     context 'with invalid params' do
       context 'like a missing web hook url' do
+        it '' do
+        end
       end
       context 'like a nil pull request' do
       end
