@@ -41,7 +41,11 @@ COMPLIMENTS = [
 ':thumbsup:',
 ':grinning:',
 ':smile:',
-':baymax:']
+':baymax:',
+'You\'re doing very well!',
+'You\'re doing quite well.',
+'You did very well.',
+'You did it!']
 
 SHIP_SYMBOLS = [
   ":ship:",
@@ -49,5 +53,7 @@ SHIP_SYMBOLS = [
   ":merge:",
   ":chipmunk:",
   ":rocket:",
+  ":boat:",
+  ":boaty:",
   ":bowie:"
 ]
