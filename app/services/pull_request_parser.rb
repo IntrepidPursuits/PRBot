@@ -7,11 +7,11 @@ class PullRequestParser
 
   def parse
     pull_request = PullRequest.find_or_initialize_by(link: link)
-    pull_request.team = TeamParser.parse(@params)
+    pull_request.team = TeamParser.parse(params)
     return nil if pull_request.team.nil?
-    pull_request.channel = ChannelParser.parse(@params, pull_request.team)
+    pull_request.channel = ChannelParser.parse(params, pull_request.team)
     return nil if pull_request.channel.nil?
-    pull_request.user = UserParser.parse(@params, pull_request.team)
+    pull_request.user = UserParser.parse(params, pull_request.team)
     return nil if pull_request.user.nil?
     pull_request.message = message
     if pull_request.save
@@ -26,10 +26,10 @@ class PullRequestParser
   end
 
   def link
-    @link ||= @params[:text].scan(/https:\/\/github.com\/\S+\/pull\/\d+/).first
+    @link ||= params[:text].scan(/https:\/\/github.com\/\S+\/pull\/\d+/).first
   end
 
   def message
-    @params[:text].gsub(/https:\/\/github.com\/\S+\/pull\/\d+/, '')
+    params[:text].gsub(/https:\/\/github.com\/\S+\/pull\/\d+/, '')
   end
 end

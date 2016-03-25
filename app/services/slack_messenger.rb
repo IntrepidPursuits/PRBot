@@ -6,7 +6,7 @@ class SlackMessenger
   end
 
   def post
-    if @pull_request.nil? || channel_url.nil?
+    if pull_request.nil? || channel_url.nil?
       return nil
     else
       uri = URI.parse(channel_url)
@@ -23,7 +23,7 @@ class SlackMessenger
   private
 
   def channel_name
-    "##{@pull_request.channel.name}"
+    "##{pull_request.channel.name}"
   end
 
   def channel_url
@@ -31,7 +31,7 @@ class SlackMessenger
   end
 
   def creator_name
-    "@#{@pull_request.user.name}"
+    "@#{pull_request.user.name}"
   end
 
   def link
