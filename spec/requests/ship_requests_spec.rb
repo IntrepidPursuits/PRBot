@@ -35,6 +35,18 @@ describe 'Ships Requests' do
         it 'returns a message' do
           team = create(:team)
           channel = create(:channel, team: team)
+          user = create(:user, team: team)
+          approver = create(:user,
+                            team: team,
+                            slack_user_id: 'U2147483600',
+                            name: 'Stan')
+
+          pull_request = create(:pull_request,
+                                team: team,
+                                channel: channel,
+                                user: user,
+                                approver: approver,
+                                approved_at: 1.day.ago)
 
           get(ships_url,
               create_pull_request_params,
