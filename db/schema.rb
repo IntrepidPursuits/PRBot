@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325175510) do
+ActiveRecord::Schema.define(version: 20160325180558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,8 +53,10 @@ ActiveRecord::Schema.define(version: 20160325175510) do
     t.uuid     "team_id",     null: false
     t.uuid     "channel_id",  null: false
     t.uuid     "user_id",     null: false
+    t.uuid     "approver_id"
   end
 
+  add_index "pull_requests", ["approver_id"], name: "index_pull_requests_on_approver_id", using: :btree
   add_index "pull_requests", ["channel_id"], name: "index_pull_requests_on_channel_id", using: :btree
   add_index "pull_requests", ["team_id"], name: "index_pull_requests_on_team_id", using: :btree
   add_index "pull_requests", ["user_id"], name: "index_pull_requests_on_user_id", using: :btree

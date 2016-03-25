@@ -11,7 +11,7 @@ class ShipsController < ApplicationController
       if response_code == '200'
         render text: "Ship Recorded."
       else
-        head :bad_request 
+        render text: "Ship recorded. The web hook appears to be responding slowly."
       end
     end
   end

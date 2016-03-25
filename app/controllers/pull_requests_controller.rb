@@ -3,7 +3,7 @@ class PullRequestsController < ApplicationController
     team = Team.find_by(slack_team_id: params[:team_id])
     channel = Channel.find_by(slack_channel_id: params[:channel_id])
     if  team.nil? || channel.nil?
-      render text: "something went wrong, PRBot can't find your team or channel"
+      render text: "Something went wrong, PRBot can't find your team or channel"
     else
       pull_requests = PullRequest.includes(:user).where(approved_at: nil,
                                       team: team,
@@ -15,7 +15,7 @@ class PullRequestsController < ApplicationController
   def create
     pull_request = PullRequestParser.parse(params)
     if pull_request.nil?
-      render text: 'PRBot could not find a pull request in this message' 
+      render text: 'PRBot could not find a pull request in this message. Please include the full github link.' 
     else
       response_code = PullRequestMessenger.post(pull_request)
       if response_code == '200'
@@ -23,7 +23,7 @@ class PullRequestsController < ApplicationController
       elsif response_code.nil?
         render text: "Please add a web hook url so that prbot can post in #{pull_request.channel.name}", status: :bad_request
       else
-        head :bad_request 
+        render text: "Pull request recorded. The web hook appears to be responding slowly."
       end
     end
   end
