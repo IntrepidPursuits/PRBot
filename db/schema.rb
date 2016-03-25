@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318190635) do
+ActiveRecord::Schema.define(version: 20160325175510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160318190635) do
     t.datetime "updated_at",  null: false
     t.datetime "approved_at"
     t.string   "link",        null: false
-    t.string   "message",     null: false
+    t.string   "message"
     t.uuid     "team_id",     null: false
     t.uuid     "channel_id",  null: false
     t.uuid     "user_id",     null: false

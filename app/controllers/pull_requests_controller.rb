@@ -3,7 +3,7 @@ class PullRequestsController < ApplicationController
     team = Team.find_by(slack_team_id: params[:team_id])
     channel = Channel.find_by(slack_channel_id: params[:channel_id])
     if  team.nil? || channel.nil?
-      head :bad_request
+      render text: "something went wrong, PRBot can't find your team or channel"
     else
       pull_requests = PullRequest.includes(:user).where(approved_at: nil,
                                       team: team,
@@ -15,7 +15,7 @@ class PullRequestsController < ApplicationController
   def create
     pull_request = PullRequestParser.parse(params)
     if pull_request.nil?
-      head :bad_request 
+      render text: 'PRBot could not find a pull request in this message' 
     else
       response_code = PullRequestMessenger.post(pull_request)
       if response_code == '200'
