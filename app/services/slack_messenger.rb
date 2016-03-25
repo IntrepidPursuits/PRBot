@@ -6,10 +6,14 @@ class SlackMessenger
   end
 
   def post
-    uri = URI.parse(channel_url)
-    params = { 'payload': payload }
-    response = Net::HTTP.post_form(uri, params)
-    response.code
+    if @pull_request.nil? || channel_url.nil?
+      return nil
+    else
+      uri = URI.parse(channel_url)
+      params = { 'payload': payload }
+      response = Net::HTTP.post_form(uri, params)
+      response.code
+    end
   end
 
   def self.post(pull_request)
