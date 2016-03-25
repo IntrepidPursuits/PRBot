@@ -1,4 +1,19 @@
 class ShipsController < ApplicationController
+  def index
+    team = Team.find_by(slack_team_id: params[:team_id])
+    channel = Channel.find_by(slack_channel_id: params[:channel_id])
+    if  team.nil? || channel.nil?
+      render text: "Something went wrong, PRBot can't find your team or channel"
+    else
+      pull_requests = PullRequest
+                      .includes(:user)
+                      .where( approved_at: 0.day.ago.midnight..Time.now,
+                                      team: team,
+                                      channel: channel).all
+      render text: TodaysShipsMessage.message(pull_requests)
+    end
+  end
+
   def create
     pull_request = ShipParser.parse(params)
     if pull_request.nil?
@@ -6,7 +21,7 @@ class ShipsController < ApplicationController
     else
       pull_request.approved = true
 
-      approver= UserParser.parse(params, pull_request.team)
+      approver = UserParser.parse(params, pull_request.team)
       pull_request.approver = approver
       if pull_request.save
 
