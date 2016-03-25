@@ -1,3 +1,6 @@
+require 'action_view'
+include ActionView::Helpers::DateHelper 
+
 class TodaysShipsMessage
   attr_reader :pull_requests
    def initialize(pull_requests)
@@ -12,7 +15,7 @@ class TodaysShipsMessage
       pull_requests.each do |pull_request|
         body += "\n* #{pull_request.user.name}'s: #{pull_request.link}"
         if pull_request.approver.present?
-          body << " - approved by #{pull_request.approver.name}"
+          body << " - approved by #{pull_request.approver.name} #{time_ago(pull_request)} ago"
         end
       end
     end
@@ -21,5 +24,11 @@ class TodaysShipsMessage
 
   def self.message(pull_requests)
     new(pull_requests).message
+  end
+
+  private
+
+  def time_ago(pull_request)
+    distance_of_time_in_words(pull_request.approved_at, Time.now)
   end
 end
