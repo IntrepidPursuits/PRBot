@@ -1,7 +1,7 @@
 require 'action_view'
 include ActionView::Helpers::DateHelper 
 
-class ShiplistMessage
+class ShipListMessage
   attr_reader :pull_requests
    def initialize(pull_requests)
     @pull_requests = pull_requests

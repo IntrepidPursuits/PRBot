@@ -8,7 +8,7 @@ class ShipParser
   def parse
     return nil if params[:text] == ""
     pr_number = params[:text].scan(/\/\d+/).first
-    return nil if user.nil?
+    return nil if user.nil? || pr_number.nil?
     pull_request = PullRequest.where(user: user, approved_at: nil).where( 'link LIKE ?', "%#{pr_number}").first
     pull_request
   end
