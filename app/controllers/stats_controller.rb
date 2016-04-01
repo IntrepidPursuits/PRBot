@@ -7,10 +7,14 @@ class StatsController < ApplicationController
     users = team.users
     this_week = 0.week.ago.monday.midnight..-1.weeks.ago.monday.midnight
 
-
     requests_this_week = pull_requests.where(created_at: this_week).count
+    approves_this_week = pull_requests.where(approved_at: this_week).count
 
-    requests_per_week = pull_requests.count/((-1.days.ago.midnight - team.created_at.midnight)/(60*60*24))
+    since_inception =  (-1.days.ago.midnight..team.created_at.midnight)
+    day_since_inception = (-1.days.ago.midnight - team.created_at.midnight)/(60*60*24)
+
+    requests_per_week = pull_requests.where(created_at: since_inception).count/day_since_inception
+    approves_per_week = pull_requests.where(approved_at: since_inception).count/day_since_inception
 
 
     most_submits = []
@@ -19,13 +23,11 @@ class StatsController < ApplicationController
     most_approves_week = []
 
     users.each do |user|
-        submit_prs = PullRequest.where(user: user, channel: channel)
-        approve_prs = PullRequest.where(approver: user, channel: channel)
-        submit_prs_week = PullRequest.where(user: user,
-                                            channel: channel,
+        submit_prs = pull_requests.where(user: user)
+        approve_prs = pull_requests.where(approver: user)
+        submit_prs_week = pull_requests.where(user: user,
                                             created_at: this_week)
-        approve_prs_week = PullRequest.where(approver: user,
-                                             channel: channel,
+        approve_prs_week = pull_requests.where(approver: user,
                                              created_at: this_week)
         if submit_prs.count > most_submits.count
             most_submits = submit_prs
@@ -41,16 +43,20 @@ class StatsController < ApplicationController
         end
     end
 
-    stats_text = "*PRBot Statistics*:\n"
+    stats_text = ''
     if requests_this_week && requests_per_week
-        stats_text << "Pull Request Volume:\nThis Week: *#{requests_this_week} this week*\nAverage: #{'%.2f' % requests_per_week} per week\n\n"
+        stats_text << "*Pull Request Submission Volume:*\nThis Week: *#{requests_this_week} this week*\nAverage: #{'%.2f' % requests_per_week} per week\n\n"
+    end
+
+    if approves_this_week && approves_per_week
+        stats_text << "*Pull Request Approval Volume:*\nThis Week: *#{approves_this_week} this week*\nAverage: #{'%.2f' % approves_per_week} per week\n\n"
     end
 
     if most_submits_week.present? && most_submits.present?
-        stats_text << "Most Individual Submissions:\nThis Week: *#{most_submits_week[0].user.name}* with *#{most_submits_week.count}\nAll Time: #{most_submits[0].user.name} with #{most_submits.count}\n        \n"
+        stats_text << "*Most Individual Submissions:*\nThis Week: *#{most_submits_week[0].user.name}* with *@#{most_submits_week.count}*\nAll Time: #{most_submits[0].user.name} with #{most_submits.count}\n        \n"
     end
     if most_approves_week.present? && most_approves.present?
-        stats_text << "Most Individual Reviews:\nThis Week: *#{most_approves_week[0].user.name}* with *#{most_approves_week.count}*\nAll Time: #{most_approves[0].user.name} with #{most_approves.count}\n"
+        stats_text << "*Most Individual Reviews:*\nThis Week: *#{most_approves_week[0].user.name}* with *@#{most_approves_week.count}*\nAll Time: #{most_approves[0].user.name} with #{most_approves.count}\n"
     end
     render text: stats_text
   end
