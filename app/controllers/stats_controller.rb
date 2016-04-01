@@ -11,10 +11,10 @@ class StatsController < ApplicationController
     approves_this_week = pull_requests.where(approved_at: this_week).count
 
     since_inception =  (team.created_at.midnight..-1.days.ago.midnight)
-    day_since_inception = (-1.days.ago.midnight - team.created_at.midnight)/(60*60*24)
+    weeks_since_inception = (-1.days.ago.midnight - team.created_at.midnight)/(60*60*24*7)
 
-    requests_per_week = pull_requests.where(created_at: since_inception).count/day_since_inception
-    approves_per_week = pull_requests.where(approved_at: since_inception).count/day_since_inception
+    requests_per_week = pull_requests.where(created_at: since_inception).count/weeks_since_inception
+    approves_per_week = pull_requests.where(approved_at: since_inception).count/weeks_since_inception
 
 
     most_submits = []
