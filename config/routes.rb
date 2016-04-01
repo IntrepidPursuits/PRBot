@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :ships, only: [:index,:create]
   resources :channel_web_hooks, only: [:create]
   resources :prbot, only: [:index]
+  resources :stats, only: [:index]
 end
