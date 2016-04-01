@@ -14,6 +14,10 @@ class PullRequestsController < ApplicationController
 
   def create
     pull_request = PullRequestParser.parse(params)
+    if pull_request.approved?
+      pull_request.approved = false
+      pull_request.save
+    end
     if pull_request.nil?
       render text: 'PRBot could not find a pull request in this message. Please include the full github link.' 
     else
@@ -25,6 +29,18 @@ class PullRequestsController < ApplicationController
       else
         render text: "Pull request recorded. The web hook appears to be responding slowly."
       end
+    end
+  end
+  
+  def destroy
+    pull_request = PullRequestParser.parse(params)
+    if pull_request.nil?
+      render text: 'There is no pull request with these parameters'
+    elsif pull_request.approved?
+      render text: 'PRBot does not delete approved pull requests.'
+    else
+      pull_request.destroy
+      render text: 'Pull request deleted.'      
     end
   end
 end

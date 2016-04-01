@@ -6,7 +6,8 @@ class PrbotController < ApplicationController
     2. View a list of open pull requests:           /prlist\n
     3. Approve a pull request for shipping:         /ship @{username} /{pr number}\n
     4. View a list of pull requests approved today  /shiplist\n
-    5. Add another channel to PRBot:                /pr_web_hook {webhook link}
+    5. Delete an open pull request                  /pr_del @{username} /{pr}
+    6. Add another channel to PRBot:                /pr_web_hook {webhook link}
     "
   end
 end

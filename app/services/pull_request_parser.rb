@@ -15,10 +15,6 @@ class PullRequestParser
     return nil if pull_request.user.nil?
     pull_request.message = message
     if pull_request.save
-      if pull_request.approved?
-        pull_request.approved = false
-        pull_request.save
-      end
       pull_request
     else
       nil
