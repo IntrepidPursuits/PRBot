@@ -1,7 +1,7 @@
 require 'action_view'
 include ActionView::Helpers::DateHelper 
 
-class TodaysShipsMessage
+class ShiplistMessage
   attr_reader :pull_requests
    def initialize(pull_requests)
     @pull_requests = pull_requests
@@ -13,7 +13,7 @@ class TodaysShipsMessage
       body = "There are currently no pull requests approved for today."
     else
       pull_requests.each do |pull_request|
-        body += "\n* #{pull_request.user.name}'s: #{pull_request.link}"
+        body << "\n* #{pull_request.user.name}'s: #{pull_request.link}"
         if pull_request.approver.present?
           body << " - approved by #{pull_request.approver.name} #{time_ago(pull_request)} ago"
         end

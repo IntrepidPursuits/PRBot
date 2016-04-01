@@ -8,7 +8,7 @@ class PullRequestsController < ApplicationController
       pull_requests = PullRequest.includes(:user).where(approved_at: nil,
                                       team: team,
                                       channel: channel).all
-      render text: PullRequestMessage.message(pull_requests)
+      render text: PullRequestListMessage.message(pull_requests)
     end
   end
 

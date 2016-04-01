@@ -10,7 +10,7 @@ class ShipsController < ApplicationController
                       .where( approved_at: 0.day.ago.midnight..Time.now,
                                       team: team,
                                       channel: channel).all
-      render text: TodaysShipsMessage.message(pull_requests)
+      render text: ShipListMessage.message(pull_requests)
     end
   end
 
