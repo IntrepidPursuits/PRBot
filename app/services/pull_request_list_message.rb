@@ -13,7 +13,7 @@ class PullRequestListMessage
       body = "There are currently no pull requests approved for today."
     else
       pull_requests.each do |pull_request|
-        body << "\n* #{pull_request.user.name}'s: #{pull_request.link} added #{time_ago(pull_request)} ago"
+        body << "\n* #{pull_request.user.name}'s: #{pull_request.link} - added #{time_ago(pull_request)} ago"
       end
     end
     body
@@ -26,6 +26,6 @@ class PullRequestListMessage
   private
 
   def time_ago(pull_request)
-    distance_of_time_in_words(pull_request.approved_at, Time.now)
+    distance_of_time_in_words(pull_request.created_at, Time.now)
   end
 end
