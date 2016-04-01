@@ -7,8 +7,8 @@ class PrbotController < ApplicationController
     3. Approve a pull request for shipping:         `/ship @{username} /{pr number}`\n
     4. View a list of pull requests approved today  `/shiplist`\n
     5. Delete an open pull request (Hard delete)                  `/pr_del @{username} /{pr}`
-    6. Add another channel to PRBot:                `/pr_web_hook {webhook link}`
-
+    6. Add another channel to PRBot:                `/pr_web_hook {webhook link}\n
+    7. See Channel Stats                            `/prstats`\n\n
     *Note*: Submitting a pull request that has already been approved will re-open it.
     "
   end

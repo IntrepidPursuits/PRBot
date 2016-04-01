@@ -10,7 +10,7 @@ class StatsController < ApplicationController
     requests_this_week = pull_requests.where(created_at: this_week).count
     approves_this_week = pull_requests.where(approved_at: this_week).count
 
-    since_inception =  (-1.days.ago.midnight..team.created_at.midnight)
+    since_inception =  (team.created_at.midnight..-1.days.ago.midnight)
     day_since_inception = (-1.days.ago.midnight - team.created_at.midnight)/(60*60*24)
 
     requests_per_week = pull_requests.where(created_at: since_inception).count/day_since_inception
@@ -53,10 +53,10 @@ class StatsController < ApplicationController
     end
 
     if most_submits_week.present? && most_submits.present?
-        stats_text << "*Most Individual Submissions:*\nThis Week: *#{most_submits_week[0].user.name}* with *@#{most_submits_week.count}*\nAll Time: #{most_submits[0].user.name} with #{most_submits.count}\n        \n"
+        stats_text << "*Most Individual Submissions:*\nThis Week: *@#{most_submits_week[0].user.name}* with *#{most_submits_week.count}*\nAll Time: #{most_submits[0].user.name} with #{most_submits.count}\n        \n"
     end
     if most_approves_week.present? && most_approves.present?
-        stats_text << "*Most Individual Reviews:*\nThis Week: *#{most_approves_week[0].user.name}* with *@#{most_approves_week.count}*\nAll Time: #{most_approves[0].user.name} with #{most_approves.count}\n"
+        stats_text << "*Most Individual Reviews:*\nThis Week: *@#{most_approves_week[0].user.name}* with *#{most_approves_week.count}*\nAll Time: #{most_approves[0].user.name} with #{most_approves.count}\n"
     end
     render text: stats_text
   end
