@@ -6,7 +6,11 @@ class ShipMessenger < SlackMessenger
   end
 
   def ship
-    SHIP_SYMBOLS[rand(0..SHIP_SYMBOLS.size - 1)].to_s
+    if pull_request.user.slack_user_id == 'U029DCSSN'
+      ":bowie:"
+    else
+      SHIP_SYMBOLS[rand(0..SHIP_SYMBOLS.size - 1)].to_s
+    end
   end
 
   def compliment

@@ -55,6 +55,5 @@ SHIP_SYMBOLS = [
   ":chipmunk:",
   ":rocket:",
   ":boat:",
-  ":boaty:",
-  ":bowie:"
+  ":boaty:"
 ]
