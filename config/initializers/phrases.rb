@@ -45,7 +45,8 @@ COMPLIMENTS = [
 'You\'re doing very well!',
 'You\'re doing quite well.',
 'You did very well.',
-'You did it!']
+'You did it!',
+':holt: Steve Holt!']
 
 SHIP_SYMBOLS = [
   ":ship:",

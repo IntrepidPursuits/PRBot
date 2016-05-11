@@ -56,7 +56,7 @@ class StatsController < ApplicationController
         stats_text << "*Most Individual Submissions:*\nThis Week: *@#{most_submits_week[0].user.name}* with *#{most_submits_week.count}*\nAll Time: #{most_submits[0].user.name} with #{most_submits.count}\n        \n"
     end
     if most_approves_week.present? && most_approves.present?
-        stats_text << "*Most Individual Reviews:*\nThis Week: *@#{most_approves_week[0].user.name}* with *#{most_approves_week.count}*\nAll Time: #{most_approves[0].user.name} with #{most_approves.count}\n"
+        stats_text << "*Most Individual Reviews:*\nThis Week: *@#{most_approves_week[0].approver.name}* with *#{most_approves_week.count}*\nAll Time: #{most_approves[0].approver.name} with #{most_approves.count}\n"
     end
     render text: stats_text
   end
