@@ -7,4 +7,8 @@ FactoryGirl.define do
     channel
     user
   end
+
+  trait :bitbucket do
+    link 'https://bitbucket.org/mechio_inc/ecommerce/pull-requests/125'
+  end
 end

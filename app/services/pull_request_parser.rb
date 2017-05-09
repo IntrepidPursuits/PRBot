@@ -26,10 +26,10 @@ class PullRequestParser
   end
 
   def link
-    @link ||= params[:text].scan(/https:\/\/github.com\/\S+\/pull\/\d+/).first
+    @link ||= params[:text].scan(/https:\/\/(github.com|bitbucket\.org)\/\S+\/(pull|pull-requests)\/\d+/).first
   end
 
   def message
-    params[:text].gsub(/https:\/\/github.com\/\S+\/pull\/\d+/, '')
+    params[:text].gsub(/https:\/\/(github.com|bitbucket\.org)\/\S+\/(pull|pull-requests)\/\d+/, '')
   end
 end
