@@ -20,8 +20,8 @@ class ShipParser
   private
 
   def user
-    unless params[:text].scan(/@([.A-Za-z_-]+){1}/).empty?
-      name = params[:text].scan(/@([.A-Za-z_-]+){1}/).first.first
+    unless params[:text].scan(/@([.A-Za-z0-9_-]+){1}/).empty?
+      name = params[:text].scan(/@([.A-Za-z0-9_-]+){1}/).first.first
       @user ||= User.find_by(name: name)
     end
   end
